@@ -56,13 +56,11 @@ const Budget = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const obj = {token:localStorage.getItem('token')};
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/allExpofBud/${id}`, {
           method: "GET",
           credentials: "include",
-          body:JSON.stringify(obj)
         });
 
         if (!response.ok) {

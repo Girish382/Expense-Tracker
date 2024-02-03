@@ -55,12 +55,10 @@ const User = () => {
     let isMounted = true;
 
     const fetchData = async () => {
-      const obj={token:localStorage.getItem('token')}
       try {
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/allBudofUser`, {
           method: "GET",
           credentials: "include",
-          body:JSON.stringify(obj)
         });
 
         if (!response.ok) {
