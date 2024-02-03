@@ -20,6 +20,7 @@ const Expense = ({ expense, budgetDetails, setbudgetDetails }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         credentials: "include",
         body:JSON.stringify(obj)

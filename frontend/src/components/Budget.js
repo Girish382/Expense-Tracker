@@ -32,7 +32,7 @@ const Budget = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(expense),
         credentials: "include",
@@ -61,6 +61,9 @@ const Budget = () => {
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/allExpofBud/${id}`, {
           method: "GET",
           credentials: "include",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the actual token
+          },
         });
 
         if (!response.ok) {
