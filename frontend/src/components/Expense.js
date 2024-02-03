@@ -13,6 +13,7 @@ const Expense = ({ expense, budgetDetails, setbudgetDetails }) => {
 
   const handleDeleteExpense = async () => {
     const id = expense._id;
+    const obj={token:localStorage.getItem('token')}
     const response = await fetch(
       `${process.env.REACT_APP_Server_URL}budget/deleteExpofBud/?expenseid=${id}&Budget_id=${budgetDetails._id}`,
       {
@@ -21,6 +22,7 @@ const Expense = ({ expense, budgetDetails, setbudgetDetails }) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
+        body:JSON.stringify(obj)
       }
     );
     const result = await response.json();

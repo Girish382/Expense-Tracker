@@ -23,6 +23,7 @@ const User = () => {
     const budget = {
       category: category.current.value,
       amountAllocated: amountAllocated.current.value,
+      token:localStorage.getItem('token')
     };
 
     const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/addBudget`, {
@@ -54,10 +55,12 @@ const User = () => {
     let isMounted = true;
 
     const fetchData = async () => {
+      const obj={token:localStorage.getItem('token')}
       try {
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/allBudofUser`, {
           method: "GET",
           credentials: "include",
+          body:JSON.stringify(obj)
         });
 
         if (!response.ok) {

@@ -25,12 +25,14 @@ const Budget = () => {
     const expense = {
         expenseName: expenseName.current.value,
         expenseAmount: expenseAmount.current.value,
+        token:localStorage.getItem('token'),
     };
   
       const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/addExpense/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          
         },
         body: JSON.stringify(expense),
         credentials: "include",
@@ -54,12 +56,13 @@ const Budget = () => {
 
   useEffect(() => {
     let isMounted = true;
-
+    const obj = {token:localStorage.getItem('token')};
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/allExpofBud/${id}`, {
           method: "GET",
           credentials: "include",
+          body:JSON.stringify(obj)
         });
 
         if (!response.ok) {

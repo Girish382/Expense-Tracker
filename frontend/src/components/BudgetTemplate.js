@@ -23,12 +23,14 @@ const BudgetTemplate = ({ budget,userDetails,setUserDetails }) => {
 
     const handleDeleteBudget = async()=>{
         const id = budget._id;
+        const obj={token:localStorage.getItem('token')}
         const response = await fetch(`${process.env.REACT_APP_Server_URL}budget/deleteBudofUser/${id}`,{
             method:"DELETE",
             headers: {
                 "Content-Type": "application/json",
               },
             credentials:"include",
+            body:JSON.stringify(obj)
         })
         const result = await response.json();
 
